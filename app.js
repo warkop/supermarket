@@ -1,20 +1,20 @@
-const http = require('http');
-const routes = require('./routes');
-
+const bodyParse = require('body-parser');
 const express = require('express');
 
 const app = express();
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 app.get('/favicon.ico', (req, res) => res.status(204));
 
-app.use('/add-product', (req, res, next) => {
-    console.log('Middleware yang product');
-    res.send('<h1>Halaman "add product"</h1>');
-});
+app.use(bodyParse.urlencoded({extended:false}));
 
-app.use('/', (req, res, next) => {
-    console.log('Ini middleware yang lain!');
-    res.send('<h1>bego lu</h1>');
+app.use('/admin',adminRoutes);
+app.use(shopRoutes);
+
+app.use((req, res, next) => {
+    res.status(404).send('Error 404');
 });
 
 // console.log(routes.tulisan)
