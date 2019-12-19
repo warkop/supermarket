@@ -17,11 +17,11 @@ module.exports = class Cart {
             }
 
             //Analyze the cart => Find existing product 
-            console.log(cart.products);
             const existingProductIndex = cart.products.findIndex(prod => prod.id === id);
             const existingProduct = cart.products[existingProductIndex];
             let updatedProduct;
             //Add new product/increase quantity
+            
             if (existingProduct) {
                 updatedProduct = { ...existingProduct };
                 updatedProduct.qty = updatedProduct.qty + 1;
@@ -33,7 +33,7 @@ module.exports = class Cart {
             }
             cart.totalPrice = cart.totalPrice + +productPrice;
             fs.writeFile(p, JSON.stringify(cart), err => {
-                console.log(err);
+                // console.log(err);
             })
         })
     }
