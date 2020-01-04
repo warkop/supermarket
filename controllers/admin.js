@@ -64,3 +64,6 @@ exports.getProducts = (req, res, next) => {
   });
 }
 
+exports.deleteDeleteProducts = (req, res, next) => {
+  const prodId = req.body.productId;
+}
