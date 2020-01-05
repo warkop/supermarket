@@ -23,9 +23,8 @@ app.use(shopRoutes);
 app.use(error.get404);
 
 serialize.sync().then(result => {
-    console.log(result)
 }).catch(err => {
-    console.log(err)
+    // console.log(err)
 });
 
 app.listen(3000);

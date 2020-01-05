@@ -37,7 +37,7 @@ exports.postAddProduct = (req, res, next) => {
     price: price,
     description: description
   }).then(result => {
-    console.log(result);
+    // console.log(result);
     res.redirect('/admin/products');
   }).catch(err => {
     console.log(err);
