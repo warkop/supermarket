@@ -11,7 +11,15 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const error = require('./controllers/error');
-const db = required('./util/database');
+const db = require('./util/database');
+
+db.execute('SELECT * FROM products')
+.then(result => {
+    console.log(result[0], result[1]);
+})
+.catch(err => {
+    console.log(err);
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
