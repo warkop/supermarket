@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-    User.findByPk(1).then(user => {
+    User.findOne().then(user => {
         req.user = user;
         next();
     }).catch();
@@ -37,7 +37,7 @@ serialize
     // .sync({force: true}) // force untuk paksa membuat tabel baru, JANGAN AKTIFKAN FORCE SAAT DI PRODUCTION SERVER
     .sync()
     .then(result => {
-        return User.findByPk(1);
+        return User.findOne();
     })
     .then(user => {
         if (!user) {
