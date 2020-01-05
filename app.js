@@ -11,15 +11,7 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const error = require('./controllers/error');
-const db = require('./util/database');
-
-// db.execute('SELECT * FROM products')
-// .then(result => {
-//     console.log(result[0], result[1]);
-// })
-// .catch(err => {
-//     console.log(err);
-// });
+const serialize = require('./util/database');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -29,5 +21,11 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(error.get404);
+
+serialize.sync().then(result => {
+    console.log(result)
+}).catch(err => {
+    console.log(err)
+});
 
 app.listen(3000);
