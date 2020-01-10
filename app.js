@@ -57,6 +57,9 @@ serialize
     })
     .then(user => {
         // console.log(user)
+        return user.createCart();
+    })
+    .then(cart => {
         app.listen(3000);
     })
     .catch(err => {
