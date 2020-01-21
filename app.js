@@ -27,7 +27,6 @@ app.use((req, res, next) => {
 
 app.use(error.get404);
 
-mongoConnect(client => {
-    console.log(client);
+mongoConnect( () => {
     app.listen(3000);
 })
